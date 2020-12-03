@@ -1,8 +1,6 @@
-#include <sys/mman.h>
-#include <sys/stat.h>
+#include "../../shared-code.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <fcntl.h>
 
 // Struct for return values.
 typedef struct summulres
@@ -72,17 +70,12 @@ void summul(char* input, long int match, summulres* res)
 int main(int argc, char* argv[])
 {
 
-	// Getting file as memory mapped string
-	int fd = open("input.txt", O_RDONLY);
-
-	struct stat st;
-	fstat(fd, &st);
-
-	char* input = (char*) mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+	// Getting input file
+	inputFile* input = getinputfile("input.txt");
 
 	// Create result structure and get the result for 2020.
 	summulres res = {};
-	summul(input, 2020, &res);
+	summul(input->buffer, 2020, &res);
 
 	// Check for errors
 	if (res.mul == 0) return 1;
@@ -90,8 +83,8 @@ int main(int argc, char* argv[])
 	// Print result
 	printf("Result is: %li * %li * %li = %li\n", res.num1, res.num2, res.num3, res.mul);
 
-	// Unmap the string
-	munmap(input, st.st_size);
+	// Unmap the input file
+	freeinputfile(input);
 
 	// Quit.
 	return 0;
