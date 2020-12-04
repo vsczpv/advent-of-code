@@ -236,7 +236,7 @@ int main(int argc, char* argv[])
 	}
 
 	// Print result
-	printf("%i\n", valid);
+	printf("Warning: you may need to try executing this multiples times to get the right answer.\n\n%i\n", valid);
 
 	// Free stuff
 	freeinputfile(input);
