@@ -43,50 +43,64 @@ void decodebsp(char* str, intxy* res)
 	return;
 }
 
+// Seats table
+// This holds what seats are used or not.
 bool seats[WIDTH+1][HEIGHT+1] = { false };
 
 int main(int argc, char* argv[])
 {
 
-	for (int x = 0; x <= WIDTH; x++)
-		for (int y = 0; y <= HEIGHT; y++)
-			seats[x][y] = false;
+	// Old cleanup code because i am paranoid
+	//for (int x = 0; x <= WIDTH; x++)
+	//	for (int y = 0; y <= HEIGHT; y++)
+	//		seats[x][y] = false;
 
+	// Get input file, etc...
 	inputFile* input = getinputfile("input.txt");
-
 	char* index = input->buffer;
 
-	int highid = 0;
+	// Go through input file
 	int i = 0;
 	while (i < strlen(index))
 	{
+		// Convert Binary spaced partitioning to X,Y coordinate.
 		intxy coord;
 		decodebsp(&(index[i]), &coord);
+		// Go to the end of the line
 		while (index[i] != '\n') i++; i++;
+		// Mark seat as used
 		seats[coord.x][coord.y] = true;
 	}
 
+	// Cycle through seats table
 	for (int y = 0; y <= HEIGHT; y++)
 		for (int x = 0; x <= WIDTH; x++)
+			// Uncomment this and comment that other if for a visualisation of the seats
 			//{if (x == 0) printf("\n");printf("%i ", seats[x][y]);}
+			// Is seat empty?
 			if (seats[x][y] == false)
 			{
-				int sx = x;
-				int sy = y;
+				// Get id from coordinates
 				int id = y * (HEIGHTDEPTH + 1) + x;
 
+				// Get adjecent ids
 				int a1id = id - 1;
 				int a2id = id + 1;
 
+				// Get X,Y coordiantes for adj1
 				int a1sx = a1id % (HEIGHTDEPTH + 1);
 				int a1sy = a1id / (HEIGHTDEPTH + 1);
 
+				// Get X,Y coordinates for adj2
 				int a2sx = a2id % (HEIGHTDEPTH + 1);
 				int a2sy = a2id / (HEIGHTDEPTH + 1);
 
-				printf("Seat %i %i %i, Adj1 %i is %i, Adj2 %i is %i\n", x, y, id, a1id, seats[a1sx][a1sy], a2id, seats[a2sx][a2sy]);
+				// If both adjecent seats are booked, then this is the right one.
+				if (seats[a1sx][a1sy] && seats[a2sx][a2sy])
+					printf("Your seat is %i, at row %i column %i.\n", id, y, x);
 			}
 
+	// Free stuff
 	freeinputfile(input);
 
 	return 0;
