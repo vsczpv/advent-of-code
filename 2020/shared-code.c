@@ -12,7 +12,7 @@ inputFile* getinputfile(char* path)
 	inputFile* input = malloc(sizeof(inputFile));
 
 	// Open file
-	input->fd = open("input.txt", O_RDONLY);
+	input->fd = open(path, O_RDONLY);
 
 	// Get file stat (to know its size)
 	fstat(input->fd, &(input->st));
