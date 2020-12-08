@@ -10,9 +10,9 @@
 #define ACC 1
 #define JMP 2
 
-// I guess i should stop putting a big WARNING in all caps at the sart of the file
+// I guess i should stop putting a big WARNING in all caps at the start of the file
 // oh...
-// anyway, since now i'm writing comment here, might just aswell do it in this one
+// anyway, since now i'm write comments here, might just aswell do it in this one
 
 // This solution calculates all possible variations of NOP/JMP in a brute force way
 
