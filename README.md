@@ -1,3 +1,3 @@
 # My repo for advent-of-code solutions
 
-detailed explanations are in their respective folder
+Detailed explanations are in their respective folders.
