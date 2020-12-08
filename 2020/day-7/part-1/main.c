@@ -1,6 +1,6 @@
 #include "../../shared-code.h"
-#include <../../linkmacro.h>
-#include <../../link.h>
+#include <../../lib/link/include/linkmacro.h>
+#include <../../lib/link/include/link.h>
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
