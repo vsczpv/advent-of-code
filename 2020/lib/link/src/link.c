@@ -340,7 +340,9 @@ int countlink(vlink* entry)
 	entry = __LINKEDLIST_tofirst(entry);
 	int count = 1;
 
-	while (entry != NULL && entry->next != NULL)
+	if (entry == NULL) return 0;
+
+	while (entry->next != NULL)
 	{
 		entry = entry->next;
 		count++;
