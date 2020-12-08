@@ -338,7 +338,7 @@ vlink** cutlink(vlink* entry, char mode, int amount)
 int countlink(vlink* entry)
 {
 	entry = __LINKEDLIST_tofirst(entry);
-	int count = 0;
+	int count = 1;
 
 	while (entry != NULL && entry->next != NULL)
 	{

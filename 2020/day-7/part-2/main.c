@@ -18,6 +18,8 @@
 // I don't care! i'll keep the part-1 non-optimized
 // as is just fun to watch that thing struggle to parse the input
 // (there is also the fact that i have no idea WHAT made this fast...)
+// Edit: I now know what the problem is (thanks to u/adrian17 & u/ClimberSeb)
+// but i'm to lazy to fix it lol
 
 // Shallow bag structure
 // This structure holds info for bags at the start
@@ -90,7 +92,7 @@ long int countshinybags(vlink* entry, bool recursion, long int factor)
 		// Get bag type
 		sbag* nbag = (sbag*) (entry->data);
 		// Cycle through sub bags
-		for (int i = 0; i <= countlink(nbag->holds); i++)
+		for (int i = 0; i < countlink(nbag->holds); i++)
 		{
 			// Get bag type
 			dbag* nnbag = (dbag*) (seeklink(nbag->holds, LINK_FROMFIRST, i)->data);
@@ -102,7 +104,7 @@ long int countshinybags(vlink* entry, bool recursion, long int factor)
 				return 1 * factor;
 			} else {
 				// Cycle through bag types
-				for (int j = 0; j <= countlink(entry); j++)
+				for (int j = 0; j < countlink(entry); j++)
 				{
 					// Convert nnbag from dbag to sbag just like in part-1
 					sbag* lbag = (sbag*) (seeklink(entry, LINK_FROMFIRST, j)->data);
@@ -124,18 +126,18 @@ long int countshinybags(vlink* entry, bool recursion, long int factor)
 	} else {
 		// Search and get our shiny bag
 		sbag* nbag;
-		for (int i = 0; i <= countlink(entry); i++)
+		for (int i = 0; i < countlink(entry); i++)
 		{
 			nbag = (sbag*) (seeklink(entry, LINK_FROMFIRST, i)->data);
 			if (strcmp(nbag->type, "shiny gold") == 0) break;
 		}
 		// Cycle through bags inside this one
-		for (int i = 0; i <= countlink(nbag->holds); i++)
+		for (int i = 0; i < countlink(nbag->holds); i++)
 		{
 			// Get the bag
 			dbag* nnbag = (dbag*) (seeklink(nbag->holds, LINK_FROMFIRST, i)->data);
 			// Cycle through bag types
-			for (int j = 0; j <= countlink(entry); j++)
+			for (int j = 0; j < countlink(entry); j++)
 			{
 				// Convert from dbag to sbag... check stuff...
 				sbag* lbag = (sbag*) (seeklink(entry, LINK_FROMFIRST, j)->data);
@@ -209,10 +211,10 @@ int main(int argc, char* argv[])
 	printf("%li\n", res);
 
 	// Free everything correctly
-	for (int j = 0; j <= countlink(bagtypes); j++)
+	for (int j = 0; j < countlink(bagtypes); j++)
 	{
 		sbag* nbag = (sbag*) (seeklink(bagtypes, LINK_FROMFIRST, j)->data);
-		for (int k = 0; k <= countlink(nbag->holds); k++)
+		for (int k = 0; k < countlink(nbag->holds); k++)
 		{
 			dbag* nnbag = (dbag*) (seeklink(nbag->holds, LINK_FROMFIRST, k)->data);
 			free(nnbag);

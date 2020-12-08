@@ -80,7 +80,7 @@ int countshinybags(vlink* entry, bool recursion)
 		// Get current bag type
 		sbag* nbag = (sbag*) (entry->data);
 		// Cycle through all sub bags
-		for (int i = 0; i <= countlink(nbag->holds); i++)
+		for (int i = 0; i < countlink(nbag->holds); i++)
 		{
 			// Get bag type
 			dbag* nnbag = (dbag*) (seeklink(nbag->holds, LINK_FROMFIRST, i)->data);
@@ -90,19 +90,19 @@ int countshinybags(vlink* entry, bool recursion)
 			else {
 				// Not found, search recursively
 				// This works the same as the one below
-				for (int j = 0; j <= countlink(entry); j++)
+				for (int j = 0; j < countlink(entry); j++)
 				{
 					sbag* lbag = (sbag*) (seeklink(entry, LINK_FROMFIRST, j)->data);
 					if (strcmp(lbag->type, nnbag->type) == 0)
 						if (countshinybags(seeklink(entry, LINK_FROMFIRST, j), true))
-							{ res++; j = countlink(nbag->holds)+1; break; }
+							{ res++; j = countlink(nbag->holds); break; }
 				}
 			}
 		}
 		return res;
 	} else {
 		// Cycle through all bag types
-		for (int i = 0; i <= countlink(entry); i++)
+		for (int i = 0; i < countlink(entry); i++)
 		{
 			// Get the bag type
 			sbag* nbag = (sbag*) (seeklink(entry, LINK_FROMFIRST, i)->data);
@@ -110,7 +110,7 @@ int countshinybags(vlink* entry, bool recursion)
 			if (strcmp(nbag->type, "shiny gold") == 0) continue;
 
 			// Cycle through all sub bags
-			for (int j = 0; j <= countlink(nbag->holds); j++)
+			for (int j = 0; j < countlink(nbag->holds); j++)
 			{
 				// Get the bag type
 				dbag* nnbag = (dbag*) (seeklink(nbag->holds, LINK_FROMFIRST, j)->data);
@@ -121,7 +121,7 @@ int countshinybags(vlink* entry, bool recursion)
 				// Didn't find, search recursively
 				else {
 					// Cycle through all types of bag
-					for (int k = 0; k <= countlink(entry); k++)
+					for (int k = 0; k < countlink(entry); k++)
 					{
 						// Get bag type
 						// We need to have this third middle man variable
@@ -132,7 +132,7 @@ int countshinybags(vlink* entry, bool recursion)
 						if (strcmp(lbag->type, nnbag->type) == 0)
 							if (countshinybags(seeklink(entry, LINK_FROMFIRST, k), true))
 								// If we find it, increment res, set j to max and break both for loops.
-								{ res++; j = countlink(nbag->holds)+1; break; }
+								{ res++; j = countlink(nbag->holds); break; }
 					}
 				}
 			}
@@ -147,7 +147,7 @@ int countshinybags(vlink* entry, bool recursion)
 int main(int argc, char* argv[])
 {
 
-	inputFile* input = getinputfile("input.txt");
+	inputFile* input = getinputfile("input2.txt");
 	char* index = input->buffer;
 
 	// bagtypes is a linked list that hold all types of bags
@@ -204,10 +204,10 @@ int main(int argc, char* argv[])
 	printf("%i\n", res);
 
 	// Free everything correctly
-	for (int j = 0; j <= countlink(bagtypes); j++)
+	for (int j = 0; j < countlink(bagtypes); j++)
 	{
 		sbag* nbag = (sbag*) (seeklink(bagtypes, LINK_FROMFIRST, j)->data);
-		for (int k = 0; k <= countlink(nbag->holds); k++)
+		for (int k = 0; k < countlink(nbag->holds); k++)
 		{
 			dbag* nnbag = (dbag*) (seeklink(nbag->holds, LINK_FROMFIRST, k)->data);
 			free(nnbag);
