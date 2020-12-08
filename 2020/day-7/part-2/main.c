@@ -204,7 +204,7 @@ int main(int argc, char* argv[])
 	// Remove dummy "NULL" link
 	bagtypes = removedummylink(bagtypes);
 
-	// Count shiny bag possibilities and print result
+	// Count bags inside shiny bag and print result
 	long int res = countshinybags(bagtypes, false, 1);
 	printf("%li\n", res);
 
