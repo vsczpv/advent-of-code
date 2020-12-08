@@ -147,7 +147,7 @@ int countshinybags(vlink* entry, bool recursion)
 int main(int argc, char* argv[])
 {
 
-	inputFile* input = getinputfile("input2.txt");
+	inputFile* input = getinputfile("input.txt");
 	char* index = input->buffer;
 
 	// bagtypes is a linked list that hold all types of bags
