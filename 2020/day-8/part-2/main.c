@@ -10,8 +10,14 @@
 #define ACC 1
 #define JMP 2
 
+// I guess i should stop putting a big WARNING in all caps at the sart of the file
+// oh...
+// anyway, since now i'm writing comment here, might just aswell do it in this one
+
+// This solution calculates all possible variations of NOP/JMP in a brute force way
+
 // Instruction strucutre
-// Holds instruction id and argument
+// Holds instruction id, argument and checked state
 typedef struct inst
 {
 	char instruction;
