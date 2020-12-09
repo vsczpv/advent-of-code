@@ -36,6 +36,30 @@ void freeinputfile(inputFile* input)
 	return;
 }
 
+// Counts how many lines are in string
+int countlines(const char* str)
+{
+	int res = 0;
+	int len = strlen(str);
+	for (int i = 0; i < len; i++)
+	{
+		if (str[i] == '\n') res++;
+	}
+	return res;
+}
+
+// Skip spaces (and also newlines)
+int skipspace(int spaces, int i, char* str)
+{
+	int count = 0;
+	while (count < spaces)
+	{
+		if (str[i] == '\n') break;
+		if (str[i] == ' ') count++; i++;
+	}
+	return i;
+}
+
 char *strnstr(const char *haystack, const char *needle, size_t len)
 {
         int i;

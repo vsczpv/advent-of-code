@@ -44,19 +44,6 @@ typedef struct dbag
 	int amnt;
 } dbag;
 
-// Skip spaces (and also newlines)
-int skipspace(int spaces, int i, char* str)
-{
-	int j = i;
-	int count = 0;
-	while (count < spaces)
-	{
-		if (str[j] == '\n') break;
-		if (str[j] == ' ') count++; j++;
-	}
-	return j;
-}
-
 // removedummylink removes the "NULL" entry
 // at the start of every link
 // said null entry is needed as one cannot

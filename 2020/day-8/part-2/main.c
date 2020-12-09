@@ -34,31 +34,6 @@ static const char optable[OPTS][4] =
 	"jmp"
 };
 
-// Skip spaces (and also newlines)
-// Ripped from day-7
-int skipspace(int spaces, int i, char* str)
-{
-	int count = 0;
-	while (count < spaces)
-	{
-		if (str[i] == '\n') break;
-		if (str[i] == ' ') count++; i++;
-	}
-	return i;
-}
-
-// Counts how many lines are in file
-int countlines(const char* str)
-{
-	int res = 0;
-	int len = strlen(str);
-	for (int i = 0; i < len; i++)
-	{
-		if (str[i] == '\n') res++;
-	}
-	return res;
-}
-
 int main(int argc, char* argv[])
 {
 

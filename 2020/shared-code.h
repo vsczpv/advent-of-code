@@ -21,6 +21,12 @@ inputFile* getinputfile(char* path);
 // Dispense of file correctly
 void freeinputfile(inputFile* input);
 
+// Count lines in string
+int countlines(const char* str);
+
+// Skips spaces
+int skipspace(int spaces, int i, char* str);
+
 // strnstr implementation from stackoverflow
 // glibc doesn't have this by default.
 // https://stackoverflow.com/questions/23999797/implementing-strnstr
