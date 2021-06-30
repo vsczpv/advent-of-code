@@ -1,4 +1,4 @@
-#include "../../shared-code.h"
+#include "shared-code.h"
 #include <stdio.h>
 #include <stdlib.h>
 

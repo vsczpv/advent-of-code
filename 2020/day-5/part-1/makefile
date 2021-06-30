@@ -1,8 +1,24 @@
+SHARED = ../../shared
+
+CC := gcc
+OPT_CARGS :=
+CARGS := $(OPT_CARGS) -I$(SHARED)/include -lm
+
+SOURCES = $(shell find . -type f -name '*.c')
+
+.PHONY: all clean shared run
+
+all: a.out
+
 clean:
-	rm a.out
+	rm -vf a.out
 
-build:
-	gcc main.c ../../shared-code.o -lm
+shared:
+	cd $(SHARED) && make
 
-run:
+a.out: shared $(SOURCES)
+	$(CC) $(SOURCES) $(SHARED)/shared.a $(CARGS) -o $@
+
+run: a.out
 	./a.out
+

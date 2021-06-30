@@ -1,4 +1,4 @@
-#include "../../shared-code.h"
+#include "shared-code.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -19,7 +19,7 @@ static const char tokens[TOKAMNT][5] =
 int main(int argc, char* argv[])
 {
 	// Initializing input file...
-	inputFile* input = getinputfile("file.txt");
+	inputFile* input = getinputfile("input.txt");
 
 	// .. and other variables.
 	char* index = input->buffer;

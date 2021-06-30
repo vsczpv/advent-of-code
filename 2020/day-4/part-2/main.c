@@ -1,4 +1,4 @@
-#include "../../shared-code.h"
+#include "shared-code.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -118,7 +118,7 @@ bool isSpecialNum(short mode, char* str)
 int main(int argc, char* argv[])
 {
 	// Initializing input file...
-	inputFile* input = getinputfile("file.txt");
+	inputFile* input = getinputfile("input.txt");
 
 	// .. and other variables.
 	char* index = input->buffer;
