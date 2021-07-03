@@ -18,5 +18,6 @@ a.out: $(SOURCES)
 	$(CC) $(SOURCES) $(SHARED)/shared.a $(CARGS) -o $@
 
 run: a.out
+	@echo -e '\033[01;31mWARNING:\033[00m day-14/part-2 can take a while.'
 	./a.out
 
