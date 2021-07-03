@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "shared-code.h"
 
-#include <assert.h>
+//#include <assert.h>
 
 // At one moment I ran into overflow problems due to that strage 36-bit width
 // Solution? Just slap uint64_t like a madman!
