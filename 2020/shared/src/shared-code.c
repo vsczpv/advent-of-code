@@ -18,7 +18,7 @@ inputFile* getinputfile(char* path)
 	fstat(input->fd, &(input->st));
 
 	// Mmap file into memory
-	input->buffer = (char*) mmap(NULL, input->st.st_size, PROT_READ, MAP_PRIVATE, input->fd, 0);
+	input->buffer = (char*) mmap(NULL, input->st.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, input->fd, 0);
 
 	// Return input file
 	return input;
